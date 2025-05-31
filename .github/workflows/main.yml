@@ -11,7 +11,7 @@ jobs:
       - name: Run Fluid Attacks Skims with Docker
         uses: docker://docker.io/fluidattacks/skims:latest
         with:
-          args: skims scan ./config.yaml
+          args: skims --strict scan ./config.yaml
           
       - name: Upload scan report
         if: always()
