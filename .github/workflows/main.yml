@@ -10,10 +10,10 @@ jobs:
          - uses: docker://docker.io/fluidattacks/skims:latest
            name: skimsStandalone
            with:
-             args: skims --strict scan .
-         - name: Upload Fluid Results
+             args: skims --strict scan ./config.yaml
+         - name: Upload scan report
            if: always()
-           uses: actions/upload-artifact@v2
+           uses: actions/upload-artifact@v3
            with:
-               name: Fluid-Attacks-Results
-               path: Fluid-Attacks-Results.csv
+            name: fluidattacks-report
+            path: Fluid-Attacks-Results.csv
