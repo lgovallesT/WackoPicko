@@ -1,4 +1,4 @@
-# .github/workflows/dev.yml
+# .github/workflows/main.yml
 name: Standalone CLI
 on: [push, pull_request]
 
@@ -8,10 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run Fluid Attacks Skims
-        uses: docker://docker.io/fluidattacks/skims:latest
-        with:
-          args: skims scan ./config.yaml
+      - name: Run Fluid Attacks Skims with Docker
+        run: docker run --rm -v ${{ github.workspace }}:/app -w /app docker.io/fluidattacks/skims:latest skims scan ./config.yaml
 
       - name: Upload scan report
         if: always()
